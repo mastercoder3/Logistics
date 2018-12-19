@@ -1,0 +1,166 @@
+.containerr{
+    z-index: 100000000;
+    max-height: 600px !important;
+}
+mat-dialog-container{
+    max-height: 600px !important;
+}
+#cdk-overlay-0{
+    max-height: 600px !important;
+
+}
+.modalForm{
+    max-width: 480px;
+    min-width: 302px;
+}
+
+.form-full-width{
+    width: 100%;
+}
+
+.field{
+    width: 227px !important;
+    min-width: 145px !important;
+}
+
+#checkButton{
+    position: absolute;
+    bottom: -10;
+    right: 4%;
+}
+
+#checkButton > button{
+    width: 53px;
+    background-color: #FFFFFF !important;
+    height: 53px;
+    outline: 0;
+}
+
+#backButton{
+    position: absolute;
+    top: 0;
+    left: -6%;
+}
+
+#backButton > button{
+    width: 53px;
+    background-color: #FFFFFF !important;
+    height: 53px;
+    outline: 0;
+}
+
+.header{
+    display: table !important;
+}
+
+.content{
+    display: table-cell;
+}
+
+.nameTag{
+    background-color: #FF0057 !important;
+    color: white !important;
+    border-radius: 100%;
+    width: 40px;
+    height: 40px;
+    margin-left: 10px;
+}
+
+.nameTag > h5{
+    text-align: center !important;
+    position: relative;
+    top: 10px;
+    font-size: 1.2em;
+}
+
+.information{
+    display: table-cell;
+    padding-left: 10px;
+}
+
+.namePlace{
+    display: table-row;
+    padding-left: 20px !important;
+}
+
+.address{
+    margin-top: -40px !important;
+
+}
+
+.top{
+    max-height: 112px !important;
+    min-height: 112px !important;
+}
+
+/* .form1{
+    margin-top: 100px !important;
+} */
+
+
+#boxes{
+    min-height: 140px !important;
+    display: table;
+    max-width: 480px;
+    width: 100% !important;
+}
+
+#left{
+    background-color: #FFFFFF !important;
+    box-shadow: none !important;
+    /* float: left;
+    position: relative;
+    top: 50px; */
+    display: table-cell !important;
+    position: relative;
+    left: 0 !important;
+    top: -50px;
+}
+
+#left:active{
+    background-color: grey !important;
+}
+
+#right{
+    background-color: #FFFFFF !important;
+    box-shadow: none !important;
+    /* float: right;
+    position: relative;
+    top: 50px; */
+    display: table-cell !important;
+    position: relative;
+    right: 0 !important;
+    top: -50px;
+}
+
+#right:active{
+    background-color: grey !important;
+
+}
+
+#box{
+    display: table-cell !important;
+}
+
+/* #box > p{
+    padding-top: 30px !important;
+    padding-left: 20px;
+} */
+
+#inner{
+    display: inline-block;
+}
+
+#inner > p{
+    float: left;
+    position: relative;
+    top: 50px !important;
+}
+
+#inner > img{
+    float: right;
+    position: relative;
+    left: 35%;
+    width: 130px !important;
+    height: 130px !important;
+}

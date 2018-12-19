@@ -1,0 +1,28 @@
+<div class="card" style="max-width: 320px; margin: 0 auto; background: #efeded; margin-top: 15px;">
+    <img class="card-img-top" src="./../../assets/images/logo.png" alt="Card image cap" style="max-width: 120px !important; margin: 0 auto; text-align: center;">
+    <div class="card-body">
+      <div class="container-fluid">
+          <form [formGroup]="form" (ngSubmit)="submit(form)" >
+              <mat-form-field style="width: 100%">
+                  <input matInput placeholder="First Name" type="text" formControlName="fname">
+                </mat-form-field>
+                <mat-form-field style="width: 100%">
+                    <input matInput placeholder="Last Name" type="text" formControlName="lname">
+                  </mat-form-field>
+                  <mat-form-field style="width: 100%">
+                      <input matInput placeholder="Country" type="text" formControlName="country">
+                    </mat-form-field>
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Email" type="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Password" type="password" formControlName="password">
+            </mat-form-field>
+            <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid || form.pristine" style="width: 100%" >Sign Up</button>
+          </form>
+          <br>
+          <span style="text-align: center"><a  routerLink="/signin">SIGN IN</a></span>
+      </div>
+    </div>
+  </div>
+  <div style="height: 30px;"></div>

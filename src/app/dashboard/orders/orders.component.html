@@ -1,0 +1,42 @@
+<div class="contianer" style="width: 95%; margin-top: 20px; margin-left: 20px;">
+    <div class="row">
+      <div class="col-12">
+        <input type="text" [(ngModel)]="userFilter.orderid" class="form-control" id="search" placeholder="Search order" style="outline: none;">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xl-12 col-lg-12 col-md-12">
+        <table style="width: 100%;">
+          <thead>
+            <tr>
+              <th>Order Id</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Service</th>
+              <th>Date</th>
+              <th>Amount</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of neworders | filterBy:userFilter; let i = index">
+              <td>{{item.orderid}}</td>
+              <td class="small">{{item.sender[0].city}}, {{item.from}}</td>
+              <td class="small">{{item.recipient[0].city}}, {{item.to}}</td>
+              <td>{{item.pickup === true ? 'Pickup Service' : 'Self Drop' }}</td>
+              <td class="small">{{date[i]}}</td>
+              <td>AED {{item.total}}</td>
+            </tr>
+            <tr *ngFor="let item of orders | filterBy:userFilter; let i = index">
+              <td>{{item.orderid}}</td>
+              <td class="small">{{item.sender[0].city}}, {{item.from}}</td>
+              <td class="small">{{item.recipient[0].city}}, {{item.to}}</td>
+              <td>{{item.pickup === true ? 'Pickup Service' : 'Self Drop' }}</td>
+              <td class="small">{{date1[i]}}</td>
+              <td>AED {{item.total}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <div style="height: 100px"></div>

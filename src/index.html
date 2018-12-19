@@ -2,13 +2,160 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Frontend</title>
+  <title>KS Logistics</title>
   <base href="/">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" type="image/x-icon" href="favicon.ico">
+
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
+    function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //custom-theme -->
+<link href="./assets/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="./assets/css/JiSlider.css" rel="stylesheet"> 
+<link rel="stylesheet" href="./assets/css/flexslider.css" type="text/css" media="screen" property="" />
+<!-- Owl-carousel-CSS --><link href="./assets/css/owl.carousel.css" rel="stylesheet">
+<link href="./assets/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<!-- font-awesome-icons -->
+<link href="./assets/css/font-awesome.css" rel="stylesheet"> 
+<!-- //font-awesome-icons -->
+<link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,300i,400,400i,600,600i,700,900" rel="stylesheet">
+<link
+rel="stylesheet"
+href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
+<link rel="stylesheet" href="/src/assets/animations/animate.css">
+
+
 </head>
 <body>
   <app-root></app-root>
+   <!-- start-smoth-scrolling -->
+<!-- js -->
+<script type="text/javascript" src="./assets/js/jquery-2.1.4.min.js"></script>
+<!-- //js -->
+<script src="./assets/js/JiSlider.js"></script>
+<script>
+			$(window).load(function () {
+				$('#JiSlider').JiSlider({color: '#fff', start: 3, reverse: true}).addClass('ff')
+			})
+		</script><script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-36251023-1']);
+  _gaq.push(['_setDomainName', 'jqueryscript.net']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<!-- stats -->
+	<script src="./assets/js/jquery.waypoints.min.js"></script>
+	<script src="./assets/js/jquery.countup.js"></script>
+		<script>
+			$('.counter').countUp();
+		</script>
+<!-- //stats -->
+<script type="text/javascript">
+$(function(){
+  $("#bars li .bar").each(function(key, bar){
+    var percentage = $(this).data('percentage');
+
+    $(this).animate({
+      'height':percentage+'%'
+    }, 1000);
+  })
+})
+</script>
+<script src="./assets/js/simplePlayer.js"></script>
+			<script>
+				$("document").ready(function() {
+					$("#video").simplePlayer();
+				});
+</script>
+
+<!-- flexisel -->
+	<script type="text/javascript" src="./assets/js/jquery.flexisel.js"></script>
+	<script type="text/javascript">
+		$(window).load(function() {
+			$("#flexiselDemo1").flexisel({
+				visibleItems: 4,
+				animationSpeed: 1000,
+				autoPlay: true,
+				autoPlaySpeed: 3000,    		
+				pauseOnHover: true,
+				enableResponsiveBreakpoints: true,
+				responsiveBreakpoints: { 
+					portrait: { 
+						changePoint:480,
+						visibleItems: 1
+					}, 
+					landscape: { 
+						changePoint:667,
+						visibleItems:2
+					},
+					tablet: { 
+						changePoint:800,
+						visibleItems: 3
+					}
+				}
+			});
+			
+		});
+	</script>
+<!-- //flexisel -->
+
+<!-- requried-jsfiles-for owl -->
+ <script src="./assets/js/owl.carousel.js"></script>
+							        <script>
+									    $(document).ready(function() {
+									      $("#owl-demo2").owlCarousel({
+									        items : 1,
+									        lazyLoad : false,
+									        autoPlay : true,
+									        navigation : false,
+									        navigationText :  false,
+									        pagination : true,
+									      });
+									    });
+									  </script>
+							 <!-- //requried-jsfiles-for owl -->
+
+
+<script type="text/javascript" src="./assets/js/move-top.js"></script>
+<script type="text/javascript" src="./assets/js/easing.js"></script>
+<script type="text/javascript">
+	jQuery(document).ready(function($) {
+		$(".scroll").click(function(event){		
+			event.preventDefault();
+			$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+		});
+	});
+</script>
+<!-- start-smoth-scrolling -->
+<!-- for bootstrap working -->
+	<script src="./assets/js/bootstrap.js"></script>
+<!-- //for bootstrap working -->
+<!-- here stars scrolling icon -->
+	<script type="text/javascript">
+		$(document).ready(function() {
+			/*
+				var defaults = {
+				containerID: 'toTop', // fading element id
+				containerHoverID: 'toTopHover', // fading element hover id
+				scrollSpeed: 1200,
+				easingType: 'linear' 
+				};
+			*/
+								
+			$().UItoTop({ easingType: 'easeOutQuart' });
+								
+			});
+	</script>
+	<script src="https://checkout.stripe.com/checkout.js"></script>
+<!-- //here ends scrolling icon -->
 </body>
 </html>

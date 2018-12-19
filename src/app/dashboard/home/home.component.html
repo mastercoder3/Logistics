@@ -1,0 +1,462 @@
+
+<!-- Banner -->
+    <div class="banner1" style="height: 400px;">
+      <div class="w3_agileits_service_banner_info">
+        <h2>We Deliver With Care</h2>
+      </div>
+    </div>
+
+<!-- //banner -->
+<!-- Modal1 -->
+
+                        <!-- //Modal1 -->	
+                        <!-- Modal2 -->
+                        <div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+                          <div class="modal-dialog">
+                          <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                                <div class="signin-form profile">
+                                <h3 class="agileinfo_sign">Sign Up</h3>	
+                                    <div class="login-form">
+                                      <form action="#" method="post">
+                                         <input type="text" name="name" placeholder="Username" required="">
+                                        <input type="email" name="email" placeholder="Email" required="">
+                                        <input type="password" name="password" placeholder="Password" required="">
+                                        <input type="password" name="password" placeholder="Confirm Password" required="">
+                                        <input type="submit" value="Sign Up">
+                                      </form>
+                                    </div>
+                                    <p><a href="#"> By clicking register, I agree to your terms</a></p>
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- //Modal2 -->	
+<!-- Modal2 -->
+                        <div class="modal fade" id="myModal4" tabindex="-1" role="dialog">
+                          <div class="modal-dialog">
+                          <!-- Modal content-->
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                
+                                <div class="signin-form profile">
+                                    <div class="login-form">
+                                        <h5>Need To <span>Transport</span>?</h5>
+                                      <p>Ut enim ad minima veniam, quis nostrum 
+                                        exerc ullam corporis nisi ut aliqui</p>
+                                      <form action="#" method="post">
+                                        <input type="text" class="email" name="name" placeholder="Name" required="">
+                                        <input type="tel" class="tel" name="tel" placeholder="Phone Number" required="">
+                                        <select class="form-control option-w3ls">
+                                            <option>Transport From</option>
+                                            <option>Albania</option>
+                                            <option>Belgium</option>
+                                            <option>Cameroon</option>
+                                            <option>Dominica</option>
+                                            <option>France</option>
+                                            <option>Jersey</option>
+                                        </select>
+                                        <select class="form-control option-w3ls">
+                                            <option>Transport To</option>
+                                            <option>Colombia</option>
+                                            <option>Indonesia</option>
+                                            <option>Japan</option>
+                                            <option>Lebanon</option>
+                                            <option>Luxembourg</option>
+                                            <option>Montserrat</option>
+                                        </select>
+                                        <input type="submit" value="Get started">  	
+                                      </form>
+                                    </div>
+                                    
+                                  </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <!-- //Modal2 -->	
+<!-- bootstrap-pop-up -->
+<div class="modal video-modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+      
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>						
+      </div>
+      <section>
+        <div class="modal-body">
+          <h5>Move Cargo</h5>
+          <img src="./assets/images/2.jpg" alt=" " class="img-responsive" />
+          <p>Ut enim ad minima veniam, quis nostrum 
+            exercitationem ullam corporis suscipit laboriosam, 
+            nisi ut aliquid ex ea commodi consequatur? Quis autem 
+            vel eum iure reprehenderit qui in ea voluptate velit 
+            e.
+            <i>" Quis autem vel eum iure reprehenderit qui in ea voluptate velit 
+              esse quam nihil molestiae consequatur.</i></p>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
+<!-- //bootstrap-pop-up -->
+<div class="inner_main_agile_section">
+  <div class="container">
+      <h2 style="text-align: center;"> <span class="fixed_w3">We</span>  Carefully handle all <span class="fixed_w3">Services</span> </h2>
+      <form [formGroup]="form" (ngSubmit)="submit(form)" style="text-align: center;">
+          <div class="row" style="width: 100%;">
+              <!--  -->
+              <span matPrefix style="position: relative; top: 14px; right: 10px !important;"><img src="https://www.countryflags.io/AE/shiny/32.png" alt="country">&nbsp;</span>
+            <mat-form-field style="max-width: 300px !important;" >
+    
+              <input matInput placeholder="From" [matAutocomplete]="auto" formControlName="from"
+               (change)="showCities($event)" style="width: 300px !important;">
+              <mat-autocomplete #auto="matAutocomplete" >
+                <mat-option *ngFor="let state of filteredCities" [value]="state.name">
+                  <span>{{state.name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+            <span style="margin-left: 20px !important;"></span>
+            <span matPrefix style="position: relative; top: 14px; right: 10px !important;"><img src="https://www.countryflags.io/{{countryCode || 'AQ'}}/shiny/32.png" alt="country">&nbsp;</span>
+            <mat-form-field style="max-width: 300px !important;">
+    
+              <input matInput placeholder="Destination" [matAutocomplete]="auto1"   formControlName="destination">
+              <mat-autocomplete #auto1="matAutocomplete">
+                <mat-option *ngFor="let state of filteredCountries " [value]="state.name">
+                  <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
+                  <span>{{state.name}}</span>
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          <div class="row">
+              <mat-form-field style="position: relative; right: 30px;">
+    
+                  <input matInput placeholder="Weight" type="number" min="0" formControlName="weight">
+                </mat-form-field>
+                <span style="margin-left: 5px !important;"></span>
+                <mat-form-field style="position: relative; left: 15px !important;">
+                  <mat-select placeholder="How would you like it to be delivered?" formControlName="price" #price [disabled]=" form.value.price === '' " (selectionChange)="onSelect($event.value)" style="position: relative; right: -30px;">
+                      <mat-option *ngIf="form.value.price !== '' " value="Saver Starting at: {{form.value.price}}">Saver Starting at: {{form.value.price}}</mat-option>
+                      <mat-option *ngIf="form.value.price !== '' " value="Pickup Service at: {{form.value.price + pickup.charges}}">Pickup Service at: {{form.value.price + pickup.charges}}</mat-option>
+                      </mat-select>
+                </mat-form-field>
+          </div>
+          <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid || form.pristine" style="width: 400px !important;" >Book Now</button>
+        </form>
+
+
+
+
+  </div>
+</div>
+<!-- //about -->
+<div class="medile_agile_its_section">
+ <div class="col-md-6 medile_agile_its_blue">
+     <h4>Ready to Get Started? <i class="fa fa-hand-o-right" aria-hidden="true"></i> </h4>
+ </div>
+ <div class="col-md-6 medile_agile_its_green">
+     <div class="more click">
+              <a href="#" class="hvr-shutter-in-vertical" data-toggle="modal" data-target="#myModal4">Click Here  <i class="fa fa-long-arrow-right" aria-hidden="true"></i></a>
+    </div>
+ </div>
+ <div class="clearfix"> </div>
+</div>
+<!-- banner-bottom -->
+<div class="banner-bottom">
+<div class="container">
+  <h6>Management Move Cargo</h6>
+  <h2> <span class="fixed_w3">We</span>  Carefully handle all <span class="fixed_w3">Services</span> </h2>
+  <p class="sub_para_agile">Ipsum dolor sit amet consectetur adipisicing elit</p>
+  <div class="agileits_banner_bottom_grids">
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/1.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+           <p>Service 1</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/2.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+           <p>Service 2</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/3.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+          <p>Service 3</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/4.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+          <p>Service 4</p>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+  <div class="agileits_banner_bottom_grids two">
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/5.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+           <p>Service 5</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/6.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+           <p>Service 6</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/7.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+          <p>Service 7</p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 agileits_banner_bottom_grid">
+      <div class="hovereffect w3ls_banner_bottom_grid">
+        <img src="./assets/images/8.jpg" alt=" " class="img-responsive" />
+        <div class="overlay">
+           <h4>Move Cargo</h4>
+          <p>Service 8</p>
+        </div>
+      </div>
+    </div>
+    <div class="clearfix"> </div>
+  </div>
+</div>
+<!-- /blog -->
+</div>
+<!-- banner-bottom -->
+<div class="banner-bottom mid-section-agileits">
+<div class="col-md-7 bannerbottomleft">
+  <div class="video-grid-single-page-agileits">
+    <div data-video="MNsWRQ9XOxs" id="video"> <img src="./assets/images/video.jpg" alt="" class="img-responsive" /> </div>
+  </div>
+</div>
+<div class="col-md-5 bannerbottomright">
+<h3>How Does We Work?</h3>
+<p>Ut enim ad minima veniam, quis nostrum 
+  exercitationem ulla corporis suscipit laboriosam, 
+  nisi ut aliquid ex ea.</p>
+<h4><i class="fa fa-taxi" aria-hidden="true"></i>International Transport Deliver System</h4>
+<h4><i class="fa fa-shield" aria-hidden="true"></i>Fast & Best Deliver Service</h4>
+<h4><i class="fa fa-ticket" aria-hidden="true"></i>Standard Courier value</h4>
+<h4><i class="fa fa-space-shuttle" aria-hidden="true"></i>Easy And Air freight Service</h4>
+<h4><i class="fa fa-truck" aria-hidden="true"></i>Packaging & Storage</h4>
+</div>
+<div class="clearfix"></div>
+</div>
+<!-- //banner-bottom -->
+<div class="events">
+<ul id="flexiselDemo1">	
+  <li>
+    <div class="w3layouts_event_grid">
+      <div class="w3_agile_event_grid1">
+        <img src="./assets/images/1.jpg" alt=" " class="img-responsive" />
+        <div class="w3_agile_event_grid1_pos">
+          <p>23 June 2017</p>
+        </div>
+        <div class="agile_event_grid1_pos">
+          <ul>
+            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18</a></li>
+            <li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>21</a></li>
+            <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>13</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="agileits_w3layouts_event_grid1">
+        <h5><a href="#" data-toggle="modal" data-target="#myModal">Freights Delivered</a></h5>
+        <p>viverra ipsum ac, convallis mauris. Sed quis congue turpis, cursus rhoncus nibh.</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="w3layouts_event_grid">
+      <div class="w3_agile_event_grid1">
+        <img src="./assets/images/8.jpg" alt=" " class="img-responsive" />
+        <div class="w3_agile_event_grid1_pos">
+          <p>25 June 2017</p>
+        </div>
+        <div class="agile_event_grid1_pos">
+          <ul>
+            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18</a></li>
+            <li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>21</a></li>
+            <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>13</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="agileits_w3layouts_event_grid1">
+        <h5><a href="#" data-toggle="modal" data-target="#myModal">Vehicles Owned</a></h5>
+        <p>viverra ipsum ac, convallis mauris. Sed quis congue turpis, cursus rhoncus nibh.</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="w3layouts_event_grid">
+      <div class="w3_agile_event_grid1">
+        <img src="./assets/images/7.jpg" alt=" " class="img-responsive" />
+        <div class="w3_agile_event_grid1_pos">
+          <p>28 June 2017</p>
+        </div>
+        <div class="agile_event_grid1_pos">
+          <ul>
+            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18</a></li>
+            <li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>21</a></li>
+            <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>13</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="agileits_w3layouts_event_grid1">
+        <h5><a href="#" data-toggle="modal" data-target="#myModal">Clients Worldwide</a></h5>
+        <p>viverra ipsum ac, convallis mauris. Sed quis congue turpis, cursus rhoncus nibh.</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="w3layouts_event_grid">
+      <div class="w3_agile_event_grid1">
+        <img src="./assets/images/2.jpg" alt=" " class="img-responsive" />
+        <div class="w3_agile_event_grid1_pos">
+          <p>30 June 2017</p>
+        </div>
+        <div class="agile_event_grid1_pos">
+          <ul>
+            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18</a></li>
+            <li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>21</a></li>
+            <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>13</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="agileits_w3layouts_event_grid1">
+        <h5><a href="#" data-toggle="modal" data-target="#myModal">Air Shipping</a></h5>
+        <p>viverra ipsum ac, convallis mauris. Sed quis congue turpis, cursus rhoncus nibh.</p>
+      </div>
+    </div>
+  </li>
+  <li>
+    <div class="w3layouts_event_grid">
+      <div class="w3_agile_event_grid1">
+        <img src="./assets/images/6.jpg" alt=" " class="img-responsive" />
+        <div class="w3_agile_event_grid1_pos">
+          <p>2 April 2017</p>
+        </div>
+        <div class="agile_event_grid1_pos">
+          <ul>
+            <li><a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i>18</a></li>
+            <li><a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>21</a></li>
+            <li><a href="#"><i class="fa fa-share" aria-hidden="true"></i>13</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="agileits_w3layouts_event_grid1">
+        <h5><a href="#" data-toggle="modal" data-target="#myModal">Direct services</a></h5>
+        <p>viverra ipsum ac, convallis mauris. Sed quis congue turpis, cursus rhoncus nibh.</p>
+      </div>
+    </div>
+  </li>
+</ul>
+</div>
+<!-- agile_testimonials -->
+<div class="test">
+<div class="container">
+<h3 class="w3l_header w3_agileits_header">Happy <span>Clients</span></h3>
+  <p class="sub_para_agile two">Ipsum dolor sit amet consectetur adipisicing elit</p>
+    
+    <div class="agile_inner_grids">
+        <div class="test-gri1">
+         <div id="owl-demo2" class="owl-carousel">
+            <div class="agile">
+                 <div class="test-grid">
+                   <div class="col-md-8 test-grid1">
+                  <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  <p class="para-w3-agile">Lorem ipsum dolor sit amet, consectetur adipiscing elit,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
+                  Lorem ipsum dolor .</p>
+                  <h4>Steve Warner</h4>
+                  <span>Lorem Ipsum</span>
+                </div>	
+                <div class="col-md-4 test-grid2">
+                  <img src="./assets/images/t1.jpg" alt="" class="img-r">
+                </div>
+              </div>	
+              <div class="clearfix"></div>
+            </div>
+            <div class="agile">
+                 <div class="test-grid">
+                   <div class="col-md-8 test-grid1">
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  <p class="para-w3-agile">Lorem ipsum dolor sit amet, consectetur adipiscing elit,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
+                  Lorem ipsum dolor.</p>
+                  <h4>Andery</h4>
+                  <span>Lorem Ipsum</span>
+                </div>	
+                <div class="col-md-4 test-grid2">
+                  <img src="./assets/images/t2.jpg" alt="" class="img-r">
+                </div>
+              </div>	
+              <div class="clearfix"></div>
+            </div>
+            <div class="agile">
+                 <div class="test-grid">
+                   <div class="col-md-8 test-grid1">
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  <p class="para-w3-agile">Lorem ipsum dolor sit amet, consectetur adipiscing elit,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
+                  Lorem ipsum dolor .</p>
+                  <h4>Williams</h4>
+                  <span>Lorem Ipsum</span>
+                </div>	
+                <div class="col-md-4 test-grid2">
+                  <img src="./assets/images/t3.jpg" alt="" class="img-r">
+                </div>
+              </div>	
+              <div class="clearfix"></div>
+            </div>
+            <div class="agile">
+                 <div class="test-grid">
+                   <div class="col-md-8 test-grid1">
+                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                  <p class="para-w3-agile">Lorem ipsum dolor sit amet, consectetur adipiscing elit,consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis.
+                  Lorem ipsum dolor .</p>
+                  <h4>Shane Smith</h4>
+                  <span>Lorem Ipsum</span>
+                </div>	
+                <div class="col-md-4 test-grid2">
+                  <img src="./assets/images/t4.jpg" alt="" class="img-r">
+                </div>
+              </div>	
+              <div class="clearfix"></div>
+            </div>	
+        </div>
+      </div>	
+  </div>
+</div>	
+</div>
+<!-- //agile_testimonials -->

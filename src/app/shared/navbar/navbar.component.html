@@ -1,0 +1,40 @@
+<div class="main_section_agile">
+  <div class="agileits_w3layouts_banner_nav">
+     
+    <nav class="navbar navbar-default">
+      <div class="navbar-header navbar-left">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+      <h1><a class="navbar-brand" routerLink="home">
+        <img src="./../../../assets/images/logo.png" alt="KSL Logistics" style="height: 80px; width: 100px; position: relative; top: -25px;">
+      </a></h1>
+
+      </div>
+       <ul class="agile_forms">
+        <li  *ngIf="!uid"  ><a class="active" routerLink="/signin"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign In</a> </li>
+        <li *ngIf="uid"><a class="active" (click)="signout()"  ><i class="fa fa-sign-out" aria-hidden="true"></i> Sign Out</a> </li>
+        <li *ngIf="!uid"><a routerLink="/signup" ><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Sign Up</a> </li>
+      </ul>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+        <nav class="link-effect-2" id="link-effect-2">
+          <ul class="nav navbar-nav">
+            <li class="routerlinkactive"><a routerLink="" class="effect-3">Home</a></li>
+            <li><a routerLink="/tracking" class="effect-3">Tracking</a></li>
+            <li *ngIf="uid"><a routerLink="/orders" class="effect-3">Orders</a></li>
+            <li><a routerLink="/about-us" class="effect-3">AboutUs</a></li>
+
+            
+            <li><a routerLink ='/contact-us' class="effect-3">ContactUs</a></li>
+          </ul>
+        </nav>
+
+      </div>
+    </nav>	
+<div class="clearfix"> </div> 
+  </div>
+</div>

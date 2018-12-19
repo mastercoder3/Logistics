@@ -1,0 +1,44 @@
+<div class="card" style="max-width: 320px; margin: 0 auto; background: #efeded; margin-top: 15px;">
+    <img class="card-img-top" src="./../../assets/images/logo.png" alt="Card image cap" style="max-width: 120px !important; margin: 0 auto;">
+    <div class="card-body">
+      <div class="container-fluid">
+          <form [formGroup]="form" (ngSubmit)="login(form)" >
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Email" type="email" formControlName="email">
+            </mat-form-field>
+            <mat-form-field style="width: 100%">
+              <input matInput placeholder="Password" type="password" formControlName="password">
+            </mat-form-field>
+            <a href="" style="font-size: 0.8em; color: #5B648F; position: relative; top: -10px !important; " data-toggle="modal" data-target="#myModal2">Recover Password</a>
+            <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid || form.pristine" style="width: 100%" >Sign In</button>
+          </form>
+          <br>
+          <span style="text-align: center"><a routerLink="/signup" >SIGN UP</a></span>
+      </div>
+    </div>
+  </div>
+  <div style="height: 80px"></div>
+
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            <div class="signin-form profile">
+            <h3 class="agileinfo_sign">Forgot Password</h3>	
+                <div class="login-form">
+                    <div class="alert alert-danger alert-dismissible" *ngIf="showError">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong>Error!</strong> {{errMsg}}
+                      </div>
+                    <input type="email" name="email" placeholder="E-mail" required="" [(ngModel)]="email">
+                    <br><br>
+                    <button class="btn btn-primary" (click)="forgotpassword()">Send Password Reset Email</button>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>

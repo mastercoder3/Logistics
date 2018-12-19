@@ -1,0 +1,115 @@
+<div class="banner1">
+			
+    <div class="w3_agileits_service_banner_info">
+      <h2>Mail Us </h2>
+    </div>
+  </div>
+  
+  <!--/ banner -->
+  <!-- Modal1 -->
+                          <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                            <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  
+                                  <div class="signin-form profile">
+                                  <h3 class="agileinfo_sign">Sign In</h3>	
+                                      <div class="login-form">
+                                        <form action="#" method="post">
+                                          <input type="email" name="email" placeholder="E-mail" required="">
+                                          <input type="password" name="password" placeholder="Password" required="">
+                                          <div class="tp">
+                                            <input type="submit" value="Sign In">
+                                          </div>
+                                        </form>
+                                      </div>
+                                      <div class="login-social-grids">
+                                        <ul>
+                                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                                          <li><a href="#"><i class="fa fa-rss"></i></a></li>
+                                        </ul>
+                                      </div>
+                                      <p><a href="#" data-toggle="modal" data-target="#myModal3" > Don't have an account?</a></p>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- //Modal1 -->	
+                          <!-- Modal2 -->
+                          <div class="modal fade" id="myModal3" tabindex="-1" role="dialog">
+                            <div class="modal-dialog">
+                            <!-- Modal content-->
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  
+                                  <div class="signin-form profile">
+                                  <h3 class="agileinfo_sign">Sign Up</h3>	
+                                      <div class="login-form">
+                                        <form action="#" method="post">
+                                           <input type="text" name="name" placeholder="Username" required="">
+                                          <input type="email" name="email" placeholder="Email" required="">
+                                          <input type="password" name="password" placeholder="Password" required="">
+                                          <input type="password" name="password" placeholder="Confirm Password" required="">
+                                          <input type="submit" value="Sign Up">
+                                        </form>
+                                      </div>
+                                      <p><a href="#"> By clicking register, I agree to your terms</a></p>
+                                    </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <!-- //Modal2 -->	
+  <!-- /contact -->	
+  <div class="inner_main_agile_section">
+  <div class="container">
+      <h3 class="w3l_header w3_agileits_header"> Leave a <span>Message</span></h3>
+      <p class="sub_para_agile two">Ipsum dolor sit amet consectetur adipisicing elit</p>
+       <div class="contact-form agile_inner_grids">
+        <form [formGroup]="form" (ngSubmit)="send(form)">
+          <div class="fields-grid">
+            <div class="styled-input agile-styled-input-top">
+              <input type="text" name="Full Name" required="" formControlName="name">
+              <label>Full Name *</label>
+              <span></span>
+            </div>
+            <div class="styled-input agile-styled-input-top">
+              <input type="text" name="Phone" required="" formControlName="phone"> 
+              <label>Phone * <small>(with country code)</small></label>
+              <span></span>
+            </div>
+            <div class="styled-input">
+              <input type="email" name="Email" required="" formControlName="email"> 
+              <label>Email *</label>
+              <span></span>
+            </div> 
+            <div class="styled-input">
+              <input type="text" name="Subject" required="" formControlName="subject">
+              <label>Subject *</label>
+              <span></span>
+            </div>
+            <div class="clearfix"> </div>
+          </div>
+          <div class="styled-input textarea-grid">
+            <textarea name="Message" required="" formControlName="message"></textarea>
+            <label>Message* <small>(min 10 words.)</small></label>
+            <span></span>
+          </div>	 
+          <input type="submit" value="SEND" [disabled]="form.pristine || form.invalid">
+        </form>
+      </div>
+    </div>
+  </div>
+            <!-- map -->
+        <h3 class="w3l_header w3_agileits_header"> Find <span>Us</span></h3>
+      <p class="sub_para_agile two">Ipsum dolor sit amet consectetur adipisicing elit</p>
+        <div class="map">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d387145.86654334463!2d-74.25818682528057!3d40.70531100753592!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew+York%2C+NY%2C+USA!5e0!3m2!1sen!2sin!4v1497241987900"  allowfullscreen></iframe>
+        </div>
+      <!-- //map --> 
+  <!-- //contact -->	
