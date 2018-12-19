@@ -11,9 +11,11 @@ import {
 } from '@angular/animations';
 import { ApiService } from 'src/app/services/api.service';
 import { HelperService } from 'src/app/services/helper.service';
-import * as global from '../../../global';
+// import * as global from '../../../global';
 import {environment} from '../../../environments/environment'
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+
+declare var StripeCheckout: any;
 
 export interface DialogData {
   animal: string;
@@ -443,7 +445,7 @@ export class CreateDialogComponent implements OnInit {
   }
 
   setStripes(){
-    this.handler = global.StripeCheckout.configure({
+    this.handler = StripeCheckout.configure({
       key: environment.stripeKey,
       image: 'https://firebasestorage.googleapis.com/v0/b/trackinglive-89835.appspot.com/o/logo%2FShirt-picture.png?alt=media&token=040a6ad9-5ad6-4e03-ae7f-f3f871a53311',
       locale: 'auto',
