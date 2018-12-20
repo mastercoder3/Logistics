@@ -26,6 +26,7 @@ export class NavbarComponent implements OnInit {
       }
       else{
         this.uid = false;
+        localStorage.removeItem('tuid');
       }
     })
   }

@@ -38,6 +38,7 @@ import { TrackingComponent } from './dashboard/tracking/tracking.component';
 import { OrdersComponent } from './dashboard/orders/orders.component';
 import { AboutUsComponent } from './dashboard/about-us/about-us.component';
 import { ContactUsComponent } from './dashboard/contact-us/contact-us.component';
+import { CountriesComponent } from './dashboard/countries/countries.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { ContactUsComponent } from './dashboard/contact-us/contact-us.component'
     TrackingComponent,
     OrdersComponent,
     AboutUsComponent,
-    ContactUsComponent
+    ContactUsComponent,
+    CountriesComponent
   ],
   imports: [
     BrowserModule,
@@ -92,6 +94,6 @@ import { ContactUsComponent } from './dashboard/contact-us/contact-us.component'
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [CreateDialogComponent]
+  entryComponents: [CreateDialogComponent, CountriesComponent]
 })
 export class AppModule { }

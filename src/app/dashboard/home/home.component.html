@@ -123,14 +123,14 @@
               </mat-autocomplete>
             </mat-form-field>
             <span style="margin-left: 20px !important;"></span>
-            <span matPrefix style="position: relative; top: 14px; right: 10px !important;"><img src="https://www.countryflags.io/{{countryCode || 'AQ'}}/shiny/32.png" alt="country">&nbsp;</span>
+            <span matPrefix style="position: relative; top: 14px; right: 10px !important;" (click)="openCountries()" style="cursor: pointer;" ><img src="https://www.countryflags.io/{{selectedCountry.code}}/shiny/32.png" alt="country">&nbsp;</span>
             <mat-form-field style="max-width: 300px !important;">
     
               <input matInput placeholder="Destination" [matAutocomplete]="auto1"   formControlName="destination">
               <mat-autocomplete #auto1="matAutocomplete">
-                <mat-option *ngFor="let state of filteredCountries " [value]="state.name">
+                <mat-option *ngFor="let state of filteredCountries " [value]="state">
                   <!-- <img class="example-option-img" aria-hidden [src]="state.flag" height="25"> -->
-                  <span>{{state.name}}</span>
+                  <span>{{state}}</span>
                 </mat-option>
               </mat-autocomplete>
             </mat-form-field>

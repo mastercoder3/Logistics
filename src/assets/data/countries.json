@@ -1,5 +1,4 @@
 [
-    {"name": "United Arab Emirates", "code": "AE"},
     {"name": "United Kingdom", "code": "GB"},
     {"name": "United States", "code": "US"},
     {"name": "Australia", "code": "AU"},
@@ -32,8 +31,9 @@
     {"name": "Iceland", "code": "IS"},
     {"name": "Latvia", "code": "LV"},
     {"name": "Lithuania", "code": "LT"},
-    {"name": "Serbia and Montenegro", "code": "CS"},
+    {"name": "Serbia", "code": "RS"},
     {"name": "New Zealand", "code": "NZ"},
     {"name": "Malaysia", "code": "MY"},
-    {"name": "Singapore", "code": "SG"}
+    {"name": "Singapore", "code": "SG"},
+    {"name": "Pakistan", "code": "PK"}
 ]   

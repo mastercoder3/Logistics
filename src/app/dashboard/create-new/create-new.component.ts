@@ -24,14 +24,14 @@ export class CreateNewComponent implements OnInit {
     this.helper.getCountryPhoneCodes()
       .subscribe(res => {
           this.par = res;
-          this.phonecode = this.par.filter(data => data.name === this.order.destination);
+          this.phonecode = this.par.filter(data => data.name.toLowerCase() === this.order.destination.toLowerCase());
           this.order.destCode = `(${this.phonecode[0].dial_code})`;
           this.phonecode = this.par.filter(data => data.name === 'United Arab Emirates');
           this.order.fromCode = `(${this.phonecode[0].dial_code})`;
           let x = {from: this.order.from, destination: this.order.destination, weight: this.order.weight, price: this.order.price, destCode: this.order.destCode, fromCode: this.order.fromCode};
           localStorage.setItem('booking', JSON.stringify(x));    
           setTimeout( ()=>{
-                this.openDialog();
+                // this.openDialog();
               }, 500);
       })
 

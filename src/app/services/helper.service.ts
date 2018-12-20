@@ -19,6 +19,14 @@ export class HelperService {
     .pipe(map((this.extractData)))
   }
 
+  getCities(){
+    let myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/json');    
+       let options = new RequestOptions({ headers: myHeaders });
+    return this.http.get('./assets/data/cities.json',options)
+    .pipe(map((this.extractData)))
+  }
+
   extractData(res){
     let body = res.json();
     return body;

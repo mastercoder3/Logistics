@@ -1,0 +1,8 @@
+<div class="container-fluid">
+  <ul style="list-style-type: none;">
+    <li *ngFor="let item of countries" style="cursor: pointer;">
+      <span (click)="selected(item)">
+      <img src="https://www.countryflags.io/{{item.code}}/shiny/32.png" alt="country">&nbsp;{{item.name}}
+    </span></li>
+  </ul>
+</div>

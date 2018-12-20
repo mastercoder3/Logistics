@@ -5,6 +5,8 @@ import { HelperService } from 'src/app/services/helper.service';
 import {FormControl, FormGroup, Validators, FormBuilder} from '@angular/forms';
 import { ApiService } from 'src/app/services/api.service';
 import { Router } from '@angular/router';
+import {MatDialog, MatDialogConfig} from "@angular/material";
+import { CountriesComponent } from '../countries/countries.component';
 
 @Component({
   selector: 'app-home',
@@ -55,14 +57,23 @@ export class HomeComponent implements OnInit {
     }
   ];
   form: FormGroup;
-
+  selectedCountry = {
+    name: 'United Kingdom',
+    code: 'GB'
+  };
+  temp;
   
-  constructor(private helper: HelperService, private fb: FormBuilder, private api: ApiService, private router: Router) { 
+  constructor(private helper: HelperService,private dialog: MatDialog, private fb: FormBuilder, private api: ApiService, private router: Router) { 
    
 
-    this.helper.getCountries()
+    this.helper.getCities()
       .subscribe(res =>{
-        this.countries = res;
+        this.temp = res;
+        // this.countries = this.countries.filter(data => data === this.selectedCountry.name)
+        Object.keys(this.temp).forEach(a =>{
+          if(a === this.selectedCountry.name)
+              this.countries = this.temp[a]
+        })
       });
   }
 
@@ -96,7 +107,7 @@ export class HomeComponent implements OnInit {
 
     const filterValue = value.toLowerCase();
 
-    return this.countries.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+    return this.countries.filter(state => state.toLowerCase().indexOf(filterValue) === 0);
   
 
 }
@@ -132,7 +143,7 @@ onChanges(){
 }
 
 getPrices(dest){
-  this.api.getPrice(dest)
+  this.api.getPrice(this.selectedCountry.name)
     .pipe(map(actions => actions.map(a =>{
       const did = a.payload.doc.id;
       const data = a.payload.doc.data();
@@ -162,7 +173,8 @@ getPrices(dest){
   submit(form){
     let data = {
       from: this.form.get('from').value,
-      destination: this.form.get('destination').value,
+      destination: this.selectedCountry.name,
+      city: this.form.get('destination').value,
       weight: this.form.get('weight').value,
       price: this.total
     }
@@ -181,6 +193,27 @@ getPrices(dest){
     else if(event.startsWith('Pickup')){
       this.total = this.form.get('price').value + this.pickup.charges;
     }
+  }
+
+  openCountries(): void{
+    const dialogRef = this.dialog.open(CountriesComponent, {
+      minWidth: '100px',
+      maxHeight: '200px',
+      panelClass: ['animated','slideInUp'],
+      data: {name: 'United Kingdom', code: 'GB'}
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.selectedCountry = result;
+        this.form.controls['destination'].setValue('');
+        Object.keys(this.temp).forEach(a =>{
+          if(a === this.selectedCountry.name)
+              this.countries = this.temp[a]
+        })
+      }
+        
+    });
   }
 
 }
