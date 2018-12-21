@@ -22,7 +22,7 @@
             </div>
             <div class="form-full-width">
                 <mat-form-field class="field" style="width: 227px !important;">
-                    <input type="text" matInput placeholder="City *" formControlName="city" #city>
+                    <input type="text" matInput placeholder="City *" formControlName="city" #city readonly>
                 </mat-form-field>
                 <span style="margin-left: 20px !important;"></span>
                 <mat-form-field class="field">
@@ -244,4 +244,5 @@
     </div>
   <div id="checkButton" *ngIf="!showForm4">
       <button mat-mini-fab (click)="next()" ><mat-icon style="color: #A0D08E;">done</mat-icon></button>
+  </div>
   </div>

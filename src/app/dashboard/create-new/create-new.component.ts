@@ -28,10 +28,10 @@ export class CreateNewComponent implements OnInit {
           this.order.destCode = `(${this.phonecode[0].dial_code})`;
           this.phonecode = this.par.filter(data => data.name === 'United Arab Emirates');
           this.order.fromCode = `(${this.phonecode[0].dial_code})`;
-          let x = {from: this.order.from, destination: this.order.destination, weight: this.order.weight, price: this.order.price, destCode: this.order.destCode, fromCode: this.order.fromCode};
+          let x = {from: this.order.from, destination: this.order.destination, weight: this.order.weight, price: this.order.price, destCode: this.order.destCode, fromCode: this.order.fromCode, city: this.order.city};
           localStorage.setItem('booking', JSON.stringify(x));    
           setTimeout( ()=>{
-                // this.openDialog();
+                this.openDialog();
               }, 500);
       })
 
@@ -40,7 +40,7 @@ export class CreateNewComponent implements OnInit {
   openDialog(): void {
 
     const dialogRef = this.dialog.open(CreateDialogComponent, {
-      minWidth: '492px',
+      minWidth: '300px',
       maxHeight: '100%',
       panelClass: ['animated','slideInUp'],
       disableClose: true,

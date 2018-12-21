@@ -1,5 +1,5 @@
 .containerr{
-    z-index: 100000000;
+    z-index: 100;
     max-height: 600px !important;
 }
 mat-dialog-container{
@@ -23,31 +23,172 @@ mat-dialog-container{
     min-width: 145px !important;
 }
 
-#checkButton{
-    position: absolute;
-    bottom: -10;
-    right: 4%;
+@media (min-width: 1200px) { 
+    #checkButton{
+        position: absolute;
+        bottom: -10;
+        right: 32%;
+    }
+    
+    #checkButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+    #backButton{
+        position: absolute;
+        top: 52px;
+        left: 28%;
+    }
+    
+    #backButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
 }
 
-#checkButton > button{
-    width: 53px;
-    background-color: #FFFFFF !important;
-    height: 53px;
-    outline: 0;
+@media (min-width: 992px) and (max-width: 1199.98px){
+    #checkButton{
+        position: absolute;
+        bottom: -10;
+        right: 25%;
+    }
+    
+    #checkButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+    #backButton{
+        position: absolute;
+        top: 52px;
+        left: 24%;
+    }
+    
+    #backButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+ }
+
+ 
+@media (min-width: 768px) and (max-width: 991.98px) { 
+    #checkButton{
+        position: absolute;
+        bottom: -10;
+        right: 25%;
+    }
+    
+    #checkButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+    #backButton{
+        position: absolute;
+        top: 52px;
+        left: 18%;
+    }
+    
+    #backButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
 }
 
-#backButton{
-    position: absolute;
-    top: 0;
-    left: -6%;
+@media (min-width: 660px) and (max-width: 767.98px) { 
+    #checkButton{
+        position: absolute;
+        bottom: -10;
+        right: 17%;
+    }
+    
+    #checkButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+    #backButton{
+        position: absolute;
+        top: 52px;
+        left: 12%;
+    }
+    
+    #backButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
 }
 
-#backButton > button{
-    width: 53px;
-    background-color: #FFFFFF !important;
-    height: 53px;
-    outline: 0;
+@media (min-width: 576px) and (max-width: 659.98px) { 
+    #checkButton{
+        position: absolute;
+        bottom: 10px;
+        right: 5%;
+    }
+    
+    #checkButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+    #backButton{
+        position: absolute;
+        top: 5px;
+        left: 5%;
+    }
+    
+    #backButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
 }
+
+@media (max-width: 576px){ 
+    #checkButton{
+        position: absolute;
+        bottom: 10px;
+        right: 4%;
+    }
+    
+    #checkButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+    #backButton{
+        position: absolute;
+        top: 5px;
+        left: 3%;
+    }
+    
+    #backButton > button{
+        width: 53px;
+        background-color: #FFFFFF !important;
+        height: 53px;
+        outline: 0;
+    }
+}
+
+
+
+
 
 .header{
     display: table !important;
@@ -142,10 +283,6 @@ mat-dialog-container{
     display: table-cell !important;
 }
 
-/* #box > p{
-    padding-top: 30px !important;
-    padding-left: 20px;
-} */
 
 #inner{
     display: inline-block;

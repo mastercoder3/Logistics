@@ -104,7 +104,7 @@ export class CreateDialogComponent implements OnInit {
         country: [this.order.destination, Validators.required],
         phonecode:[`${this.order.destination} ${this.order.destCode}`, Validators.required],
         phone:['', Validators.compose([Validators.required, Validators.maxLength(13)])],
-        city: ['', Validators.required],
+        city: [this.order.city, Validators.required],
         region: ['',Validators.required],
         street: [''],
         building: ['', Validators.required],
