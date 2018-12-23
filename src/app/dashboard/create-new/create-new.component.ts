@@ -3,6 +3,7 @@ import {MatDialog, MatDialogConfig} from "@angular/material";
 import { CreateDialogComponent } from '../create-dialog/create-dialog.component';
 import { HelperService } from 'src/app/services/helper.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-new',
@@ -16,12 +17,23 @@ export class CreateNewComponent implements OnInit {
   order;
   par;
   phonecode;
-  constructor(private dialog: MatDialog,private helper: HelperService, private router: Router) {
+  constructor(private dialog: MatDialog,private helper: HelperService, private router: Router, private auth: AuthService) {
    }
 
   ngOnInit() {
-    if(!localStorage.getItem('booking'))
-    this.router.navigate(['']);
+    this.auth.checkLoginStatus().subscribe(user =>{
+      if(user){
+        if(!localStorage.getItem('booking'))
+         this.router.navigate(['']);
+      }
+      else if(localStorage.get('booking') || user){
+        this.router.navigate(['/signin']);
+      }
+      else
+      this.router.navigate(['']);
+
+    });
+
     this.order = JSON.parse(localStorage.getItem('booking'));
     this.helper.getCountryPhoneCodes()
       .subscribe(res => {
@@ -42,8 +54,8 @@ export class CreateNewComponent implements OnInit {
   openDialog(): void {
 
     const dialogRef = this.dialog.open(CreateDialogComponent, {
-      minWidth: '300px',
-      maxHeight: '100%',
+      minWidth: '340px',
+      maxHeight: '95%',
       panelClass: ['animated','slideInUp'],
       disableClose: true,
       autoFocus: false,

@@ -7,3 +7,15 @@ agm-map{
     background: #CCC;
     
 }
+
+@media (min-width: 576px){ 
+    .dialogWidth{
+        min-width: 95% !important;
+    }
+}
+
+@media (min-width: 1200px) { 
+    .dialogWidth{
+        min-width: 340px !important;
+    }
+}

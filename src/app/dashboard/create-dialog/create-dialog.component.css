@@ -162,7 +162,6 @@ mat-dialog-container{
 @media (max-width: 576px){ 
     #checkButton{
         position: absolute;
-        bottom: -7px;
         right: 4%;
     }
     
