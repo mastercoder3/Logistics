@@ -1,7 +1,11 @@
 <div class="card" style="max-width: 320px; margin: 0 auto; background: #efeded; margin-top: 15px;">
-    <img class="card-img-top" src="./../../assets/images/logo.png" alt="Card image cap" style="max-width: 120px !important; margin: 0 auto;">
+    <img class="card-img-top" src="./../../assets/images/logo.png" alt="Card image cap" style="max-width: 120px !important; position: relative; left: 30%;">
     <div class="card-body">
       <div class="container-fluid">
+          <div class="alert alert-danger alert-dismissible" *ngIf="showError">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Login Failed!</strong> {{errMsg}}
+            </div>
           <form [formGroup]="form" (ngSubmit)="login(form)" >
             <mat-form-field style="width: 100%">
               <input matInput placeholder="Email" type="email" formControlName="email">
@@ -13,7 +17,7 @@
             <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid || form.pristine" style="width: 100%" >Sign In</button>
           </form>
           <br>
-          <span style="text-align: center"><a routerLink="/signup" >SIGN UP</a></span>
+          <span style="position: relative; left: 40%;"><a routerLink="/signup" >SIGN UP</a></span>
       </div>
     </div>
   </div>

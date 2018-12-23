@@ -12,10 +12,19 @@ import { ApiService } from 'src/app/services/api.service';
 export class SignupComponent implements OnInit {
 
   form: FormGroup;
+  showError = false;
+  errMsg;
 
-  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService, private api: ApiService) { }
+  constructor(private fb: FormBuilder, private router: Router, private auth: AuthService, private api: ApiService) {
+    if(localStorage.getItem('tuid'))
+    this.router.navigate(['']);
+   }
 
   ngOnInit() {
+    this.auth.checkLoginStatus().subscribe(user =>{
+      if(user)
+        this.router.navigate(['']);
+    });
     this.form = this.fb.group({
       fname: ['',Validators.required],
       lname: ['', Validators.required],
@@ -43,11 +52,19 @@ export class SignupComponent implements OnInit {
             localStorage.setItem('tuid',res.user.uid)
             this.router.navigate(['']);
           }, err =>{
-            console.log(err)
+            this.showError = true;
+        this.errMsg = err.message;
+        setTimeout( ()=>{
+          this.showError = false;
+        }, 5000); 
           })
       }, err => {
-        console.log(err)
-      })
+        this.showError = true;
+        this.errMsg = err.message;
+        setTimeout( ()=>{
+          this.showError = false;
+        }, 5000);
+      });
   }
 
 }

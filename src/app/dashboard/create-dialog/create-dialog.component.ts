@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject , HostListener} from '@angular/core';
+import { Component, OnInit, Inject , HostListener, OnDestroy} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material";
 import {FormGroup, FormControl, NgForm, FormGroupDirective, Validators, FormBuilder} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -14,6 +14,7 @@ import { HelperService } from 'src/app/services/helper.service';
 // import * as global from '../../../global';
 import {environment} from '../../../environments/environment'
 import {MatSnackBar, MatSnackBarConfig} from '@angular/material';
+import {map} from 'rxjs/operators';
 
 declare var StripeCheckout: any;
 
@@ -45,7 +46,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
     ])
   ]
 })
-export class CreateDialogComponent implements OnInit {
+export class CreateDialogComponent implements OnInit, OnDestroy {
 
   
   form: FormGroup;
@@ -57,7 +58,7 @@ export class CreateDialogComponent implements OnInit {
   showForm1: boolean = false;
   showForm2: boolean = false;
   showForm3: boolean = false;
-  box;
+  box = new Array(8);
   selected;
   current: number = 0;
   terms: boolean = false;
@@ -70,6 +71,9 @@ export class CreateDialogComponent implements OnInit {
   getOrders;
   handler: any;
   backBtn = false;
+  amount:number;
+  pickupCharg;
+  showError:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -79,6 +83,14 @@ export class CreateDialogComponent implements OnInit {
   ) { 
     // this.description = data.description;
     this.order = JSON.parse(localStorage.getItem('booking'));
+      if(this.order.price.startsWith('Saver')){
+        let p = this.order.price.substring(18,this.order.price.length);
+        this.amount = parseInt(p);
+      }
+      else{
+        let p = this.order.price.substring(18,this.order.price.length);
+        this.amount = parseInt(p);
+      }
   }
 
   ngOnInit() {
@@ -117,7 +129,45 @@ export class CreateDialogComponent implements OnInit {
 
       this.api.getBoxes()
         .subscribe(res =>{
-          this.box = res;
+          let x: Array<any>;
+          x = res;
+          x.forEach(a =>{
+            switch(a.text){
+              case 'Document Size':{
+                this.box[0] = a;
+                break;
+              }
+              case 'Phone Size': {
+                this.box[1] = a;
+                break;
+              }
+              case 'Small Box Size': {
+                this.box[2] = a;
+                break;
+              }
+              case 'Medium Box Size': {
+                this.box[3] = a;
+                break;
+              }
+              case 'Large Box Size': {
+                this.box[4] = a;
+                break;
+              }
+              case 'Extra Large Box Size': {
+                this.box[5] = a;
+                break;
+              }
+              case 'TV Size': {
+                this.box[6] = a;
+                break;
+              }
+              case 'Tube Size': {
+                this.box[7] = a;
+                break;
+              }
+
+            }
+          });
           this.selected = this.box[0];
           this.current = 0;
           let w = (this.selected.length*this.selected.width*this.selected.height)/5000;
@@ -131,8 +181,8 @@ export class CreateDialogComponent implements OnInit {
             height: [this.selected.height,Validators.required],
             actualweight: [this.order.weight, Validators.required],
             chargableweight: [( w < this.order.weight)  ? this.order.weight : w],
-            itemvalue: [0,Validators.required],
-            itemdescription: [''],
+            itemvalue: ['',Validators.required],
+            itemdescription: ['', Validators.required],
             units: [1, Validators.required],
             pickup: [pickup]
             
@@ -143,6 +193,12 @@ export class CreateDialogComponent implements OnInit {
         this.api.getNewOrders()
           .subscribe(res => {
             this.getOrders = res;
+          });
+
+
+        this.api.getPricingById('pickup')
+          .subscribe(res => {
+            this.pickupCharg = res;
           })
 
   }
@@ -213,6 +269,12 @@ export class CreateDialogComponent implements OnInit {
       this.showForm2 = true;
       this.backBtn = true;
     }
+    else if(this.count === 4 && this.showError ){
+      this.count--;
+      this.showForm4 = false;
+      this.showForm3 = true;
+      this.showError = false;
+    }
   }
 
   next(){
@@ -241,21 +303,26 @@ export class CreateDialogComponent implements OnInit {
       this.backBtn = false;
       this.showForm3 = false;
       this.showSpinner = true;
+      if( parseInt( this.form2.value.chargableweight ) > this.order.weight )
+        this.amount = this.getPrices(this.form1.value.country, this.order.weight);
       setTimeout( () => {
-        this.showSpinner = false;
+        if(this.amount === 0){
+          this.showError = true;
+          this.showForm4 = false;
+          this.showSpinner = false;
+        }
+        else{
+                  this.showSpinner = false;
         this.showForm4 = true;
+        }
+
       }, 2000);
-      let amount = 0;
-      if(this.order.price.startsWith('Saver')){
-        let p = this.order.price.substring(18,this.order.price.length);
-        amount = parseInt(p);
-      }
-      else{
-        let p = this.order.price.substring(18,this.order.price.length);
-        amount = parseInt(p);
-      }
+
+
+
+      
       this.newOrder = {
-        amount: amount,
+        amount: this.amount,
         comments: '',
         date: new Date(),
         from: 'United Arab Emirates',
@@ -268,13 +335,13 @@ export class CreateDialogComponent implements OnInit {
         paymentstatus: 'Unpaid',
         pickup: (this.form2.value.pickup === true) ? true : false,
         pickupaddress: '',
-        pickupcharges: 0,
+        pickupcharges: (this.form2.value.pickup === true) ? this.pickupCharg.charges : 0,
         pickupdate: '',
         pickuptime: '',
         to: this.form1.value.country,
         units: this.form2.value.units,
         userid: localStorage.getItem('tuid'),
-        total: amount * this.form2.value.units,
+        total: this.amount * parseInt(this.form2.value.units),
         recipient: [
           {
             addresstype: this.form1.value.addresstype,
@@ -314,6 +381,7 @@ export class CreateDialogComponent implements OnInit {
 
         }]
       };
+      this.newOrder.total += this.newOrder.pickupcharges;
       this.generateId(this.newOrder.to, this.newOrder.shipment[0].chargableweight);
 
     }
@@ -476,6 +544,64 @@ export class CreateDialogComponent implements OnInit {
     config.duration = 5000;
     config.panelClass = ['red-snackbar']
     this.snackBar.open(msg, 'Dismiss', config);
+  }
+
+  rates;
+  prices;
+
+  getPrices(dest:string,weight:number) :number{
+    this.api.getPrice(dest)
+      .pipe(map(actions => actions.map(a =>{
+        const did = a.payload.doc.id;
+        const data = a.payload.doc.data();
+        return {did, ...data};
+      })))
+      .subscribe(res =>{
+        this.rates = res;
+        let amount:number = 0;
+        if(this.rates.length !== 0){
+           let x  = this.rates[0].rates;
+            this.prices = x.filter(data =>  data.maxweight === weight && data.perkg === false);
+  
+            if(this.prices.length !== 0)
+              amount =  this.prices[0].price
+  
+            if(this.prices.length === 0){
+              this.prices = x.filter(data =>  data.maxweight >= weight && data.minweight <= weight && data.perkg === true);
+              if(this.prices.length !== 0)
+              amount =  this.prices[0].price * weight
+            }
+
+            return amount;
+        }
+      
+      });
+      return 0;
+  }
+
+  fromSection(){
+    this.showForm4 = false;
+    this.showForm = true;
+    this.count = 0;
+    this.backBtn = false;
+  }
+
+  toSection(){
+    this.showForm4 = false;
+    this.count = 1;
+    this.showForm1 = true;
+    this.backBtn = true;
+  }
+
+  shipmentDetails(){
+    this.showForm4 = false;
+    this.count = 2;
+    this.showForm2 = true;
+    this.backBtn = true;
+  }
+
+  ngOnDestroy(){
+
   }
 
 }

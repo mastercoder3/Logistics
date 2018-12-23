@@ -39,6 +39,10 @@ import { OrdersComponent } from './dashboard/orders/orders.component';
 import { AboutUsComponent } from './dashboard/about-us/about-us.component';
 import { ContactUsComponent } from './dashboard/contact-us/contact-us.component';
 import { CountriesComponent } from './dashboard/countries/countries.component';
+import { AuthGaurdService } from './services/auth-gaurd.service';
+import { ApiService } from './services/api.service';
+import { HelperService } from './services/helper.service';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -86,13 +90,13 @@ import { CountriesComponent } from './dashboard/countries/countries.component';
       {path: 'signin', component: LoginComponent},
       {path: 'signup', component: SignupComponent},
       {path: 'create-new', component: CreateNewComponent},
-      {path: 'orders', component: OrdersComponent},
+      {path: 'orders', component: OrdersComponent, canActivate: [AuthGaurdService]},
       {path: 'tracking', component: TrackingComponent},
       {path: 'about-us', component: AboutUsComponent},
       {path: 'contact-us', component: ContactUsComponent}
     ])
   ],
-  providers: [],
+  providers: [ApiService, HelperService, AuthGaurdService, AuthService],
   bootstrap: [AppComponent],
   entryComponents: [CreateDialogComponent, CountriesComponent]
 })

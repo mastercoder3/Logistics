@@ -1,27 +1,31 @@
 <div class="card" style="max-width: 320px; margin: 0 auto; background: #efeded; margin-top: 15px;">
-    <img class="card-img-top" src="./../../assets/images/logo.png" alt="Card image cap" style="max-width: 120px !important; margin: 0 auto; text-align: center;">
+    <img class="card-img-top" src="./../../assets/images/logo.png" alt="Card image cap" style="max-width: 120px !important; position: relative; left: 30%;">
     <div class="card-body">
       <div class="container-fluid">
+          <div class="alert alert-danger alert-dismissible" *ngIf="showError">
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+              <strong>Login Failed!</strong> {{errMsg}}
+            </div>
           <form [formGroup]="form" (ngSubmit)="submit(form)" >
               <mat-form-field style="width: 100%">
-                  <input matInput placeholder="First Name" type="text" formControlName="fname">
+                  <input matInput placeholder="First Name *" type="text" formControlName="fname">
                 </mat-form-field>
                 <mat-form-field style="width: 100%">
-                    <input matInput placeholder="Last Name" type="text" formControlName="lname">
+                    <input matInput placeholder="Last Name *" type="text" formControlName="lname">
                   </mat-form-field>
                   <mat-form-field style="width: 100%">
-                      <input matInput placeholder="Country" type="text" formControlName="country">
+                      <input matInput placeholder="Country *" type="text" formControlName="country">
                     </mat-form-field>
             <mat-form-field style="width: 100%">
-              <input matInput placeholder="Email" type="email" formControlName="email">
+              <input matInput placeholder="Email *" type="email" formControlName="email">
             </mat-form-field>
             <mat-form-field style="width: 100%">
-              <input matInput placeholder="Password" type="password" formControlName="password">
+              <input matInput placeholder="Password * (min 6 characters)" type="password" formControlName="password">
             </mat-form-field>
             <button mat-raised-button color="accent" type="submit" [disabled]="form.invalid || form.pristine" style="width: 100%" >Sign Up</button>
           </form>
           <br>
-          <span style="text-align: center"><a  routerLink="/signin">SIGN IN</a></span>
+          <span style="position: relative; left: 40%; "><a  routerLink="/signin">SIGN IN</a></span>
       </div>
     </div>
   </div>

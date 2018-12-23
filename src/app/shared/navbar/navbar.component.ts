@@ -10,6 +10,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   uid;
+  user;
 
   constructor(private router: Router, private auth: AuthService) {
     this.loggedIn();
@@ -23,6 +24,8 @@ export class NavbarComponent implements OnInit {
     this.auth.checkLoginStatus().subscribe(user =>{
       if(user){
         this.uid = true;
+        this.user = user;
+        localStorage.setItem('tuid',user.uid);
       }
       else{
         this.uid = false;

@@ -16,9 +16,14 @@ export class LoginComponent implements OnInit {
   errMsg;
   showError:boolean = false;
 
-  constructor(private fb: FormBuilder, private router: Router, private api: ApiService, private auth: AuthService) { }
+  constructor(private fb: FormBuilder, private router: Router, private api: ApiService, private auth: AuthService) { 
+   }
 
   ngOnInit() {
+    this.auth.checkLoginStatus().subscribe(user =>{
+      if(user)
+        this.router.navigate(['']);
+    })
     this.form = this.fb.group({
       email: ['',Validators.compose([Validators.email, Validators.required])],
       password: ['',Validators.required]
@@ -44,7 +49,11 @@ export class LoginComponent implements OnInit {
       });     
 
     }, err =>{
-
+        this.showError = true;
+        this.errMsg = err.message;
+        setTimeout( ()=>{
+          this.showError = false;
+        }, 5000);
     })
   }
 

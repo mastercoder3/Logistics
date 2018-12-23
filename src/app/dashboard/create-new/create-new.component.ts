@@ -20,6 +20,8 @@ export class CreateNewComponent implements OnInit {
    }
 
   ngOnInit() {
+    if(!localStorage.getItem('booking'))
+    this.router.navigate(['']);
     this.order = JSON.parse(localStorage.getItem('booking'));
     this.helper.getCountryPhoneCodes()
       .subscribe(res => {

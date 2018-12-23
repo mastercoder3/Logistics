@@ -82,6 +82,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
+    localStorage.removeItem('booking')
+    
     this.form = this.fb.group({
       from: ['', Validators.required],
       weight: ['', Validators.required],
@@ -151,6 +153,7 @@ getPrices(dest){
     })))
     .subscribe(res =>{
       this.rates = res;
+      this.form.value.price = '';
       if(this.rates.length !== 0){
          let x  = this.rates[0].rates;
           this.prices = x.filter(data =>  data.maxweight === this.form.get('weight').value && data.perkg === false);

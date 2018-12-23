@@ -1,6 +1,3 @@
-<div id="backButton" *ngIf="!showForm4 && !showForm && backBtn">
-        <button mat-mini-fab (click)="back()"  ><mat-icon style="color: #A0D08E;">arrow_back</mat-icon></button>
-</div>
 <div class="containerr" style="max-height: 600px !important;">
     <div class="form1" *ngIf="showForm" [@hideForms]="currentState">
       <h3>Sender Information</h3>
@@ -53,7 +50,14 @@
           </form>
     </div>
     <div class="form2" *ngIf="showForm1" [@hideForms]="currentState1" >
-      <h3>Recipient Information</h3>
+        <div class="row">
+            <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                    <button mat-button (click)="back()"  ><mat-icon style="color: #A0D08E;">arrow_back</mat-icon></button>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8">
+                    <h3>Recipient Information</h3>
+            </div>
+        </div>
         <form [formGroup]="form1" class="modalForm">
     
             <mat-form-field class="form-full-width">
@@ -71,7 +75,7 @@
             </div>
             <div class="form-full-width">
                 <mat-form-field class="field" style="width: 227px !important;">
-                    <input type="text" matInput placeholder="City *" formControlName="city" #city>
+                    <input type="text" matInput placeholder="City *" formControlName="city" #city readonly>
                 </mat-form-field>
                 <span style="margin-left: 20px !important;"></span>
                 <mat-form-field class="field">
@@ -102,7 +106,14 @@
           </form>
       </div>
     <div class="form3" *ngIf="showForm2" style="position: relative; top: -23px !important; max-height: 590px !important; bottom: 30px !important;">
-      <h3>What size do you want</h3>
+            <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                            <button mat-button (click)="back()"  ><mat-icon style="color: #A0D08E;">arrow_back</mat-icon></button>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8">
+                            <h3>What size do you want</h3>
+                        </div>
+                </div>
         <div id="boxes" style="max-height: 130px !important;">
           <button mat-mini-fab id="left"><mat-icon style="color: black; background-color: #ffffff !important;" (click)="previousBox()" >keyboard_arrow_left</mat-icon></button>
           <div id="box">
@@ -148,37 +159,58 @@
   
       </div>
       <div class="form3" *ngIf="showForm3">
+            <div class="row">
+                    <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                            <button mat-button (click)="back()"  ><mat-icon style="color: #A0D08E;">arrow_back</mat-icon></button>
+                    </div>
+                    <div class="col-xl-9 col-lg-9 col-md-9 col-sm-8">
+                            <h3>Additional Info</h3>
+                        </div>
+                </div>
+                <br>
             <form [formGroup]="form2">
-                <p style="position: relative; top: -25px !important;"><strong>ADDITIONAL INFO</strong></p>
-                  <div style="display: table; position: relative; top: -35px !important">
-                    <div style="display: table-row;">
-                                      <p style="display: table-cell" >Item Value (in AED):</p>
-                    <mat-form-field style="display: table-cell;  width: 234px !important; position: relative; right: 0 !important; left: 30%;">
-                        <input type="number" matInput  formControlName="itemvalue" #itemvalue min="0">
+                  <div class="row">
+                    <div class="col-md-5">
+                        <br>
+                        <p class="small"  >Item Value (in AED):</p>
+                    </div>
+                    <div class="col-md-7">
+                    <mat-form-field >
+                        <input type="number" matInput placeholder="Item Value"  formControlName="itemvalue" #itemvalue min="0">
                         <mat-error *ngIf="itemvalue.value === 0 ">Enter Item Value</mat-error>
                     </mat-form-field>
                     </div>
     
                   </div>
-                  <div style="display: table; position: relative; top: -40px !important">
-                      <div style="display: table-row;">
-                                        <p style="display: table-cell" >Item Description:</p>
-                      <mat-form-field style="display: table-cell;  width: 234px !important; position: relative; right: 0 !important; left: 40%;">
+                  <div class="row">
+                      <div class="col-md-5">
+                          <br>
+                            <p class="small" >Item Description:</p>
+                        </div>
+                        <div class="col-md-7">
+                      <mat-form-field >
                           <input type="text" matInput placeholder="Item Description"  formControlName="itemdescription" #itemdescription>
                       </mat-form-field>
                       </div>
       
                     </div>
-                    <div style="display: table; position: relative; top: -40px !important;">
-                        <div style="display: table-row;">
-                                          <p style="display: table-cell" >Units:</p>
-                        <mat-form-field style="display: table-cell;  width: 234px !important; position: relative; right: 0 !important; left: 60%;">
+                    <div class="row">
+                            <div class="col-md-5">
+                                <br>
+                                          <p class="small" >Units:</p>
+                                        </div>
+                                        <div class="col-md-7">
+                        <mat-form-field >
                             <input type="number" matInput placeholder="Item Description" min="1"  formControlName="units" #units>
                         </mat-form-field>
                         </div>
         
                       </div>
-                      <mat-checkbox class="example-margin" formControlName="pickup" #pickup>Door to Door Service</mat-checkbox>
+                      <div class="row">
+                            <mat-checkbox class="example-margin" formControlName="pickup" #pickup>Door to Door Service. <small>( AED {{pickupCharg?.charges}})</small></mat-checkbox>
+
+                      </div>
+                      <br>
             </form>
       </div>
       <div class="form4" *ngIf="showSpinner">
@@ -186,7 +218,7 @@
       </div>
 
       <div class="classform5" *ngIf="showForm4">
-        <div class="container-fluid">
+        <div class="container-fluid" (click)="fromSection()" style="cursor: pointer;">
            <div class="row">
                <div class="col-md-2">
                     <h4>From:</h4>
@@ -194,13 +226,13 @@
                <div class="col-md-10">
                    <div class="row">
                        <div class="col-md-12">
-                           <h5>{{newOrder.sender[0].sendername}}</h5>
+                           <h5>{{newOrder?.sender[0].sendername}}</h5>
                        </div>
                    </div>
                    <div class="row">
                        <div class="col-md-12">
-                           <p>{{newOrder.sender[0].office + newOrder.sender[0].building}}, {{newOrder.sender[0]?.street + newOrder.sender[0].region}},
-                            {{newOrder.sender[0].city}}, {{newOrder.sender[0].country}}    
+                           <p>{{newOrder?.sender[0].office + newOrder?.sender[0].building}}, {{newOrder?.sender[0]?.street + newOrder?.sender[0].region}},
+                            {{newOrder?.sender[0].city}}, {{newOrder?.sender[0].country}}    
                         </p>
                        </div>
                    </div>
@@ -208,7 +240,7 @@
            </div>
         </div>
         <hr>
-        <div class="container-fluid">
+        <div class="container-fluid" (click)="toSection()" style="cursor: pointer;">
             <div class="row">
                 <div class="col-md-2">
                      <h4>To:</h4>
@@ -216,18 +248,35 @@
                 <div class="col-md-10">
                     <div class="row">
                         <div class="col-md-12">
-                            <h5>{{newOrder.recipient[0].recipientname}}</h5>
+                            <h5>{{newOrder?.recipient[0].recipientname}}</h5>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <p>{{newOrder.recipient[0].office + newOrder.recipient[0].building}}, {{newOrder.recipient[0]?.street + newOrder.recipient[0].region}},
-                                {{newOrder.recipient[0].city}}, {{newOrder.recipient[0].country}}    
+                            <p>{{newOrder?.recipient[0].office + newOrder?.recipient[0].building}}, {{newOrder?.recipient[0]?.street + newOrder?.recipient[0].region}},
+                                {{newOrder?.recipient[0].city}}, {{newOrder?.recipient[0].country}}    
                             </p>
                         </div>
                     </div>
                 </div>
             </div>
+            
+         </div>
+         <div class="container-fluid" (click)="shipmentDetails()" style="cursor:pointer;" >
+                <hr>
+                <div class="row">
+                    <div class="col-md-4">
+                        <h4>Shipment Details:</h4>
+                    </div>
+                    <div class="col-md-8">
+                            <div class="row">
+                                    <div class="col-md-12"><p class="small">Item Description: {{newOrder.shipment[0].itemdescription}}</p></div>
+                                </div>
+                        <div class="row">
+                            <div class="col-md-12"><p class="small">Weight: {{newOrder.shipment[0].chargableweight}}</p></div>
+                        </div>
+                    </div>
+                </div>
          </div>
          <hr>
          <h4>Total: <span style="position: relative; right: 0px !important;">AED {{newOrder.total}}</span></h4>
@@ -242,7 +291,22 @@
          </div>
 
     </div>
-  <div id="checkButton" *ngIf="!showForm4">
+    <div *ngIf="showError">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3">
+                            <button mat-button (click)="back()"  ><mat-icon style="color: #A0D08E;">arrow_back</mat-icon></button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <h3>Unfortunately the we couldn't get the right price for your order. Please Contact us at <a routerLink="/contact-us">here.</a></h3>
+                    <h3>Thank you.</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+  <div id="checkButton" *ngIf="!showForm4 && !showSpinner && !showError">
       <button mat-mini-fab (click)="next()" ><mat-icon style="color: #A0D08E;">done</mat-icon></button>
   </div>
   </div>

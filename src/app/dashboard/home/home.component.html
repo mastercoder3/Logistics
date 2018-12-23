@@ -170,7 +170,7 @@
             </div>
             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12">
                 <mat-form-field>
-                    <mat-select placeholder="How would you like it to be delivered?" formControlName="price" #price [disabled]=" form.value.price === '' " (selectionChange)="onSelect($event.value)" style="position: relative; right: -30px;">
+                    <mat-select placeholder="How would you like it to be delivered?" formControlName="price" #price [disabled]=" form.value.price === '' " (selectionChange)="onSelect($event.value)">
                         <mat-option *ngIf="form.value.price !== '' " value="Saver Starting at: {{form.value.price}}">Saver Starting at: {{form.value.price}}</mat-option>
                         <mat-option *ngIf="form.value.price !== '' " value="Pickup Service at: {{form.value.price + pickup.charges}}">Pickup Service at: {{form.value.price + pickup.charges}}</mat-option>
                         </mat-select>
