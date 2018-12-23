@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
     code: 'GB'
   };
   temp;
+  showPrice:Array<any>= [];
   
   constructor(private helper: HelperService,private dialog: MatDialog, private fb: FormBuilder, private api: ApiService, private router: Router) { 
    
@@ -153,7 +154,8 @@ getPrices(dest){
     })))
     .subscribe(res =>{
       this.rates = res;
-      this.form.value.price = '';
+      this.form.value.price = 0;
+      this.showPrice = [];
       if(this.rates.length !== 0){
          let x  = this.rates[0].rates;
           this.prices = x.filter(data =>  data.maxweight === this.form.get('weight').value && data.perkg === false);
@@ -164,8 +166,12 @@ getPrices(dest){
           if(this.prices.length === 0){
             this.prices = x.filter(data =>  data.maxweight >= this.form.get('weight').value && data.minweight <= this.form.get('weight').value && data.perkg === true);
             if(this.prices.length !== 0)
-            this.form.value.price =  this.prices[0].price * parseInt(this.form.get('weight').value)
+            this.form.value.price =  this.prices[0].price * parseInt(this.form.get('weight').value);
+
           }
+
+          this.showPrice.push(this.form.value.price);
+          this.showPrice.push(parseInt(this.form.value.price) + this.pickup.charges);
       }
     
     });
@@ -174,27 +180,32 @@ getPrices(dest){
   total;
 
   submit(form){
+
     let data = {
       from: this.form.get('from').value,
       destination: this.selectedCountry.name,
       city: this.form.get('destination').value,
       weight: this.form.get('weight').value,
-      price: this.total
-    }
+      price: form.value.price
+    };
     localStorage.setItem('booking',JSON.stringify(data));
-    
     if(localStorage.getItem('tuid'))
         this.router.navigate(['/create-new']);
     else  
         this.router.navigate(['/signin'])
   }
 
+  drop;
+
   onSelect(event){
-    if(event.startsWith('Saver')){
-      this.total = this.form.get('price').value;
+    let x = parseInt(event);
+    if(x === this.showPrice[0]){
+      this.total = parseInt(this.showPrice[0])
+      this.form.value.price = 'Saver Starting at: '+this.total;
     }
-    else if(event.startsWith('Pickup')){
-      this.total = this.form.get('price').value + this.pickup.charges;
+    else if(x === this.showPrice[1]){
+      this.total = parseInt(this.showPrice[1])
+      this.form.value.price = 'Pickup Service at: '+this.total;
     }
   }
 
@@ -218,5 +229,6 @@ getPrices(dest){
         
     });
   }
+
 
 }

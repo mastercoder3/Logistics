@@ -21,7 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.auth.checkLoginStatus().subscribe(user =>{
-      if(user)
+      if(user && !localStorage.getItem('booking'))
         this.router.navigate(['']);
     })
     this.form = this.fb.group({

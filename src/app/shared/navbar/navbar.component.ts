@@ -38,7 +38,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('tuid')
     localStorage.removeItem('booking')
     this.auth.logout();
-    // this.router.navigate(['']);
+     this.router.navigate(['']);
   }
 
 
