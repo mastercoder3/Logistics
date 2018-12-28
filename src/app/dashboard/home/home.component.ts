@@ -63,6 +63,7 @@ export class HomeComponent implements OnInit {
   };
   temp;
   showPrice:Array<any>= [];
+  uae;
   
   constructor(private helper: HelperService,private dialog: MatDialog, private fb: FormBuilder, private api: ApiService, private router: Router) { 
    
@@ -76,6 +77,11 @@ export class HomeComponent implements OnInit {
               this.countries = this.temp[a]
         })
       });
+
+      this.helper.getUAECities()
+        .subscribe(res => {
+          this.uae = res;
+        })
   }
 
   showCities(event){
@@ -101,7 +107,7 @@ export class HomeComponent implements OnInit {
   private _filterStates(value: string) {
     const filterValue = value.toLowerCase();
    
-    let x = this.states.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
+    let x = this.uae.filter(state => state.name.toLowerCase().indexOf(filterValue) === 0);
     return  x;
   }
 

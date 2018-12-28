@@ -10,13 +10,10 @@ export class AuthGaurdService implements CanActivate {
   constructor(private router: Router, private auth: AngularFireAuth) { }
 
   canActivate(): boolean{
-    this.auth.authState.subscribe(user =>{
-      if(user)
-        return true;
-      else
-        return false;
-    });
-    return false;
+    if(localStorage.getItem('tuid'))
+      return true;
+    else
+      return false;
   }
 
 }

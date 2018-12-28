@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from 'src/app/services/api.service';
-
+declare var $ :any;
 @Component({
   selector: 'app-orders',
   templateUrl: './orders.component.html',
@@ -15,7 +15,8 @@ export class OrdersComponent implements OnInit {
   date1: Array<any> = [];
   userFilter ={
     orderid: ''
-  }
+  };
+  selected;
 
   constructor(private api: ApiService) { }
 
@@ -39,6 +40,11 @@ export class OrdersComponent implements OnInit {
         this.date1.push(new Date(a.date.toDate()).toDateString());
       });
     })
+  }
+
+  newOrderClicked(item,i){
+    $('#Orders').modal('show');
+    this.selected = item;
   }
 
 }

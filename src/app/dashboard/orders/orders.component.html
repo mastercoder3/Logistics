@@ -1,42 +1,166 @@
-<div class="contianer" style="width: 95%; margin-top: 20px; margin-left: 20px;">
+<div class="container" style="height: 100%;">
+  <div class="row">
+    <div class="col-md-12 text-center">
+        <img style="width: 180px; height: 180px;" src="./../../../assets/images/logo.png" alt="KS Logistics">
+
+    </div>
+  </div>
+</div>
+<div class="container" style="width: 95%; margin-top: 20px; margin-left: 20px;">
     <div class="row">
       <div class="col-12">
-        <input type="text" [(ngModel)]="userFilter.orderid" class="form-control" id="search" placeholder="Search order" style="outline: none;">
       </div>
     </div>
     <div class="row">
-      <div class="col-xl-12 col-lg-12 col-md-12">
-        <table style="width: 100%;">
+      <div class="col-md-2"></div>
+      <div class="col-xl-12 col-lg-8 col-md-8">
+          <input type="text" [(ngModel)]="userFilter.orderid" class="form-control text-center" id="search" placeholder="Search order"
+           style="outline: none; max-width: 300px; margin: 0 auto !important;">
+        <br>
+          <table class="table table-hover" style="width: 100%;">
           <thead>
-            <tr>
+            <tr class="text-center">
               <th>Order Id</th>
               <th>From</th>
               <th>To</th>
               <th>Service</th>
               <th>Date</th>
+              <th>Status</th>
               <th>Amount</th>
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let item of neworders | filterBy:userFilter; let i = index">
+            <tr *ngFor="let item of neworders | filterBy:userFilter; let i = index" (click)="newOrderClicked(item,i)" style="cursor: pointer;" >
               <td>{{item.orderid}}</td>
               <td class="small">{{item.sender[0].city}}, {{item.from}}</td>
               <td class="small">{{item.recipient[0].city}}, {{item.to}}</td>
               <td>{{item.pickup === true ? 'Pickup Service' : 'Self Drop' }}</td>
               <td class="small">{{date[i]}}</td>
+              <td>{{item?.orderstatus}}</td>
               <td>AED {{item.total}}</td>
             </tr>
-            <tr *ngFor="let item of orders | filterBy:userFilter; let i = index">
+            <tr *ngFor="let item of orders | filterBy:userFilter; let i = index" style="cursor: pointer;">
               <td>{{item.orderid}}</td>
               <td class="small">{{item.sender[0].city}}, {{item.from}}</td>
               <td class="small">{{item.recipient[0].city}}, {{item.to}}</td>
               <td>{{item.pickup === true ? 'Pickup Service' : 'Self Drop' }}</td>
               <td class="small">{{date1[i]}}</td>
+              <td>{{item.orderstatus}}</td>
               <td>AED {{item.total}}</td>
             </tr>
           </tbody>
         </table>
       </div>
+      <div class="col-md-2"></div>
+
     </div>
   </div>
+
+  <!-- Modal2 -->
+  <div class="modal fade" id="Orders" tabindex="-1" role="dialog">
+      <div class="modal-dialog">
+      <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            
+            <div class="signin-form profile">
+            <h3 class="agileinfo_sign">Order Details</h3>	
+              <div class="row">
+                <div class="col-md-6">
+                  <h5 style="text-align: left;">{{selected?.from}}</h5>
+                </div>
+                <div class="col-md-6">
+                  <h5 style="text-align: right;">{{selected?.to}}</h5>
+                </div>
+              </div>
+
+              <div class="row">
+               <div class="col-md-2">
+                  <p style="font-weight: bolder;" class="muted">From:</p>
+               </div>
+               <div class="col-md-10">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p style="text-align: left;">{{selected?.sender[0].sendername}}</p>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12">
+                      <p style="text-align: left;">{{selected?.sender[0].office + selected?.sender[0].building}}, {{selected?.sender[0]?.street + selected?.sender[0].region}},
+                        {{selected?.sender[0].city}}, {{selected?.sender[0].country}}    
+                    </p>
+                    </div>
+                  </div>
+               </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-2">
+                       <p style="font-weight: bolder;">To:</p>
+                    </div>
+                    <div class="col-md-10">
+                       <div class="row">
+                         <div class="col-md-12">
+                           <p style="text-align: left;">{{selected?.recipient[0].recipientname}}</p>
+                         </div>
+                       </div>
+                       <div class="row">
+                         <div class="col-md-12">
+                           <p style="text-align: left;">{{selected?.recipient[0].office + selected?.recipient[0].building}}, {{selected?.recipient[0]?.street + selected?.recipient[0].region}},
+                             {{selected?.recipient[0].city}}, {{selected?.recipient[0].country}}    
+                         </p>
+                         </div>
+                       </div>
+                    </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-md-2">
+                       <p style="font-weight: bolder;">Shipment:</p>
+                    </div>
+                    <div class="col-md-10">
+                       <div class="row">
+                         <div class="col-md-12">
+                           <p style="text-align: left;">{{selected?.shipment[0].itemdescription}}, {{selected?.shipment[0].chargableweight}} Kg</p>
+                         </div>
+                       </div>
+                       <div class="row">
+                         <div class="col-md-12">
+                           <h5 style="width: 100%;"><small style="float: left;">Units: {{selected?.units}}</small>
+                              <small style="float: right;">Pickup: {{selected?.pickup ? 'Yes' : 'No'}}</small>
+                           </h5>
+                         </div>
+                       </div>
+                    </div>
+              </div>
+              <br>
+              <div class="row">
+                  <div class="col-md-2">
+                       <p style="font-weight: bolder;">Billing:</p>
+                    </div>
+                    <div class="col-md-10">
+                       <div class="row">
+                         <div class="col-md-12">
+                           <p style="text-align: left;">Total: {{selected?.total}}</p>
+                         </div>
+                       </div>
+                       <div class="row">
+                         <div class="col-md-12">
+                           <h5 style="width: 100%;"><small style="float: left;">Order: {{selected?.amount}}</small>
+                              <small style="float: right;">Pickup: {{selected?.pickupcharges !== 0 ? selected?.pickupcharges : 0}}</small>
+                           </h5>
+                         </div>
+                       </div>
+                    </div>
+              </div>
+
+
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //Modal2 -->	
+
   <div style="height: 100px"></div>
