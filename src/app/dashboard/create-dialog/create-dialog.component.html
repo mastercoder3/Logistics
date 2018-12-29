@@ -159,7 +159,7 @@
   
   
       </div>
-      <div class="form3" *ngIf="showForm3" style="width: 100% !important;">
+      <div class="form3" *ngIf="showForm3">
             <div class="row">
                     <div class="col-xl-2 col-lg-2 col-md-2 col-sm-3">
                             <button mat-button (click)="back()"  ><mat-icon style="color: #A0D08E;">arrow_back</mat-icon></button>
@@ -282,14 +282,29 @@
          <hr>
          <h4>Total: <span style="position: relative; right: 0px !important;">AED {{newOrder.total}}</span></h4>
 
-         <div class="row">
-             <div class="col-6">
-                <button mat-button color="warn" style="width: 100% !important; outline: 0;" (click)="cod()" >Cash on Delivery</button>
+         <br>
+
+         <form [formGroup]="form3">
+            <div class="row">
+                <mat-checkbox class="example-margin" formControlName="terms" >I Accept Terms & Conditions.</mat-checkbox>
+    
              </div>
-             <div class="col-6">
-                <button mat-button color="warn" style="width: 100% !important; outline: 0" (click)="pay()" >Pay Now</button>
+             <div class="row">
+                <mat-checkbox class="example-margin" formControlName="illegal" >No Prohibited Item.</mat-checkbox>
+    
              </div>
-         </div>
+    
+             <div class="row">
+                 <div class="col-6">
+                    <button mat-button color="warn" style="width: 100% !important; outline: 0;" (click)="cod()" [disabled]="form3.pristine || !form3.value.terms || !form3.value.illegal" >Cash on Delivery</button>
+                 </div>
+                 <div class="col-6">
+                    <button mat-button color="warn" style="width: 100% !important; outline: 0" (click)="pay()" [disabled]="form3.pristine || !form3.value.terms || !form3.value.illegal" >Pay Now</button>
+                 </div>
+             </div>
+         </form>
+
+         
 
     </div>
     <div *ngIf="showError">

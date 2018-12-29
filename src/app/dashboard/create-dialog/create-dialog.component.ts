@@ -52,6 +52,7 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
   form: FormGroup;
   form1: FormGroup;
   form2: FormGroup;
+  form3: FormGroup;
   description:string;
   matcher = new MyErrorStateMatcher();
   showForm: boolean = false;
@@ -109,6 +110,11 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
       office: ['', Validators.required],
       addresstype: ['Residential',Validators.required],
       nearestlandmark: ['']
+      });
+
+      this.form3 = this.fb.group({
+        terms: [false, Validators.required],
+        illegal: [false, Validators.required]
       });
 
       this.form1 = this.fb.group({
@@ -200,6 +206,16 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
           .subscribe(res => {
             this.pickupCharg = res;
           })
+
+          this.api.getPrice(this.order.destination)
+      .pipe(map(actions => actions.map(a =>{
+        const did = a.payload.doc.id;
+        const data = a.payload.doc.data();
+        return {did, ...data};
+      })))
+      .subscribe(res =>{
+        this.rates = res;
+      });
 
   }
 
@@ -303,8 +319,8 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
       this.backBtn = false;
       this.showForm3 = false;
       this.showSpinner = true;
-      if( parseInt( this.form2.value.chargableweight ) > this.order.weight )
-        this.amount = this.getPrices(this.form1.value.country, this.order.weight);
+      if( parseInt( this.form2.value.chargableweight ) > this.order.weight || this.amount === 0)
+        this.amount = this.getPrices(this.form1.value.country, this.form2.value.chargableweight);
       setTimeout( () => {
         if(this.amount === 0){
           this.showError = true;
@@ -312,7 +328,7 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
           this.showSpinner = false;
         }
         else{
-                  this.showSpinner = false;
+          this.showSpinner = false;
         this.showForm4 = true;
         }
 
@@ -550,14 +566,6 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
   prices;
 
   getPrices(dest:string,weight:number) :number{
-    this.api.getPrice(dest)
-      .pipe(map(actions => actions.map(a =>{
-        const did = a.payload.doc.id;
-        const data = a.payload.doc.data();
-        return {did, ...data};
-      })))
-      .subscribe(res =>{
-        this.rates = res;
         let amount:number = 0;
         if(this.rates.length !== 0){
            let x  = this.rates[0].rates;
@@ -574,9 +582,7 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
 
             return amount;
         }
-      
-      });
-      return 0;
+
   }
 
   fromSection(){

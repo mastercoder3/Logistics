@@ -48,6 +48,9 @@ mat-dialog-container{
         height: 53px;
         outline: 0;
     }
+    .form3{
+        width: 500px !important;
+    }
 }
 
 @media (min-width: 992px) and (max-width: 1199.98px){
