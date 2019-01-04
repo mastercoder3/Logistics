@@ -34,6 +34,7 @@
     {"name":"New Zealand","dial_code":"+64","code":"NZ"},
     {"name":"Malaysia","dial_code":"+60","code":"MY"},
     {"name":"Singapore","dial_code":"+65","code":"SG"},
-    {"name":"United Arab Emirates","dial_code":"+971","code":"AE"}
+    {"name":"United Arab Emirates","dial_code":"+971","code":"AE"},
+    {"name": "Pakistan", "dial_code": "+92", "code": "PK"}
 
 ]

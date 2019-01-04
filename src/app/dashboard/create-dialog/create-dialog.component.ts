@@ -458,6 +458,10 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
 
   cod(){
     this.newOrder.paymentmethod = 'Cash On Delivery';
+    this.newOrder.recipient[0].country = {
+      name: this.newOrder.to,
+      code: this.code
+    };
     this.api.createOrder(this.newOrder)
       .then(res => {
         this.close();
@@ -467,6 +471,7 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
   }
 
   id: string = '';
+  code;
 
   generateId(country,weight){
     weight = Math.round(weight);
@@ -475,6 +480,7 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
         let count = res;
         count = count.filter(data => data.name === country);
         let code = count[0].code;
+        this.code = count[0].code;
         let order = this.getOrders.filter(data =>
           (new Date(data.date.toDate()).getMonth() + 1 ) === new Date().getMonth() +1 && 
           new Date(data.date.toDate()).getDate() === new Date().getDate() && 
@@ -539,6 +545,10 @@ export class CreateDialogComponent implements OnInit, OnDestroy {
           .subscribe( res => {
             if(res.status === 200){
               this.openSnackbar('Payment Accepted');
+              this.newOrder.recipient[0].country = {
+                name: this.newOrder.to,
+                code: this.code
+              };
                   this.api.createOrder(this.newOrder)
                   .then(res => {
                     this.close();

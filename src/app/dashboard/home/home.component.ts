@@ -164,7 +164,7 @@ getPrices(dest){
       this.showPrice = [];
       if(this.rates.length !== 0){
          let x  = this.rates[0].rates;
-          this.prices = x.filter(data =>  data.maxweight === this.form.get('weight').value && data.perkg === false);
+          this.prices = x.filter(data =>  data.maxweight >= this.form.get('weight').value  && this.form.get('weight').value > data.minweight && data.perkg === false);
 
           if(this.prices.length !== 0)
             this.form.value.price =  this.prices[0].price
